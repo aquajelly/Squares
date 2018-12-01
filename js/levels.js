@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Game.token3Enabled = true;
   Game.timer.innerHTML = `Time Left: ${Game.seconds}`;
   Game.lifeCounter = document.getElementsByClassName('lifeCounter')[0];
+  Game.yourScore = document.getElementsByClassName('yourScore')[0];
   Game.enemyVertical = true;
   Game.extraLifeEnabled = true;
 
@@ -123,6 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
     Game.seconds--;
     Game.timer.innerHTML = `Time Left: ${Game.seconds}`;
     }
+  }
+
+  yourScore = () => {
+    Game.yourScore.innerHTML = `Current Score: ${Game.score}`
   }
 
   lives = () => {
@@ -596,5 +601,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(() => {
     lives()
+  }, 1);
+
+  setInterval(() => {
+    yourScore()
   }, 1);
 })
