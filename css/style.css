@@ -208,6 +208,17 @@ body {
   padding-bottom: 5px;
 }
 
+.yourScore {
+  margin: auto;
+  text-align: center;
+  font-size: 30px;
+  font-style: italic;
+  font-family: sans-serif;
+  padding: 20px 0px 10px 0px;
+  border-bottom: 1px solid white;
+  width: 300px;
+}
+
 .footer {
   width: 100%;
   text-align: center;
