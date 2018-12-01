@@ -187,13 +187,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     Game.extraLifeEnabled = false;
 
-    if ((level) % 3 === 0) {
-      Game.extraLifeEnabled = true;
-      Game.extraLife = new Component(35, 35, "lime", 950, 50);
+    if ((level) % 2 === 0) {
+      if ((level) % 4 === 0) {
+        Game.extraLifeEnabled = true;
+        Game.extraLife = new Component(35, 35, "lime", 950, 50);
+      } else {
+        Game.extraLifeEnabled = true;
+        Game.extraLife = new Component(35, 35, "lime", 25, 450);
+      }
     }
 
     lifeUp = () => {
-      if ((level) % 3 === 0) {
+      if ((level) % 2 === 0) {
         if (Game.player.x <= Game.extraLife.x + 35 && Game.player.y <= Game.extraLife.y + 35 && Game.player.y + 30 >= Game.extraLife.y && Game.player.x >= Game.extraLife.x){
           gotLife.play();
           Game.extraLife.x = 15000;
