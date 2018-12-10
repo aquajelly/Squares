@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Game.token3Enabled = true;
   Game.timer.innerHTML = `Time Left: ${Game.seconds}`;
   Game.lifeCounter = document.getElementsByClassName('lifeCounter')[0];
+  Game.yourScore = document.getElementsByClassName('yourScore')[0];
   Game.enemyVertical = true;
   Game.extraLifeEnabled = true;
 
@@ -125,6 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  yourScore = () => {
+    Game.yourScore.innerHTML = `Current Score: ${Game.score}`
+  }
+
   lives = () => {
     Game.lifeCounter.innerHTML = `Lives Left: ${Game.livesRemaining}`;
   }
@@ -182,13 +187,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     Game.extraLifeEnabled = false;
 
-    if ((level) % 3 === 0) {
-      Game.extraLifeEnabled = true;
-      Game.extraLife = new Component(35, 35, "lime", 950, 50);
+    if ((level) % 2 === 0) {
+      if ((level) % 4 === 0) {
+        Game.extraLifeEnabled = true;
+        Game.extraLife = new Component(35, 35, "lime", 950, 50);
+      } else {
+        Game.extraLifeEnabled = true;
+        Game.extraLife = new Component(35, 35, "lime", 25, 450);
+      }
     }
 
     lifeUp = () => {
-      if ((level) % 3 === 0) {
+      if ((level) % 2 === 0) {
         if (Game.player.x <= Game.extraLife.x + 35 && Game.player.y <= Game.extraLife.y + 35 && Game.player.y + 30 >= Game.extraLife.y && Game.player.x >= Game.extraLife.x){
           gotLife.play();
           Game.extraLife.x = 15000;
@@ -596,5 +606,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(() => {
     lives()
+  }, 1);
+
+  setInterval(() => {
+    yourScore()
   }, 1);
 })
