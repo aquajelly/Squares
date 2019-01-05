@@ -246,20 +246,12 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       this.movement = () => {
-        if (this.y+this.dy < 0) {
-          this.dy = -this.dy;
-        } else if (this.y+this.dy > 500 - this.size) {
+        if ((this.y+this.dy < 0) || (this.y+this.dy > 500 - this.size) || (this.x+this.dx < 80 && this.y+this.dy < 80)) {
           this.dy = -this.dy;
         }
         this.y = this.y + this.dy;
 
-        if (this.x+this.dx < 0) {
-          this.dx = -this.dx;
-        } else if (this.x+this.dx > 1000 - this.size) {
-          this.dx = -this.dx;
-        } else if (this.x+this.dx < 60 && this.y+this.dy < 70) {
-          this.dy = -this.dy;
-        } else if (this.x+this.dx < 75 && this.y+this.dy < 65) {
+        if ((this.x+this.dx < 0) || (this.x+this.dx > 1000 - this.size) || (this.x+this.dx < 80 && this.y+this.dy < 80)) {
           this.dx = -this.dx;
         }
         this.x = this.x + this.dx;
@@ -306,26 +298,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    if (level < 6) {
-      if (Game.enemyVertical === true) {
-        let x = enemyArray[0][Game.random(enemyArray[0])];
-        let y = enemyArray[1][Game.random(enemyArray[1])];
-        let size = enemyArray[2][Game.random(enemyArray[2])];
-        let dy = 1;
-        let dx = 0;
-        arrayOfEnemies.push(new Enemy(x, y, size, dy, dx));
-        Game.enemyVertical = false;
-      } else {
-        let x = enemyArray[0][Game.random(enemyArray[0])];
-        let y = enemyArray[1][Game.random(enemyArray[1])];
-        let size = enemyArray[2][Game.random(enemyArray[2])];
-        let dy = 0;
-        let dx = 1;
-        arrayOfEnemies.push(new Enemy(x, y, size, dy, dx));
-        Game.enemyVertical = true;
-      }
-    }
-    else if (level % 2 === 0) {
+    // if (level < 6) {
+    //   if (Game.enemyVertical === true) {
+    //     let x = enemyArray[0][Game.random(enemyArray[0])];
+    //     let y = enemyArray[1][Game.random(enemyArray[1])];
+    //     let size = enemyArray[2][Game.random(enemyArray[2])];
+    //     let dy = 1;
+    //     let dx = 0;
+    //     arrayOfEnemies.push(new Enemy(x, y, size, dy, dx));
+    //     Game.enemyVertical = false;
+    //   } else {
+    //     let x = enemyArray[0][Game.random(enemyArray[0])];
+    //     let y = enemyArray[1][Game.random(enemyArray[1])];
+    //     let size = enemyArray[2][Game.random(enemyArray[2])];
+    //     let dy = 0;
+    //     let dx = 1;
+    //     arrayOfEnemies.push(new Enemy(x, y, size, dy, dx));
+    //     Game.enemyVertical = true;
+    //   }
+    // }
+    if (level % 1 === 0) {
       let x = diagonalEnemyArray[0][Game.random(diagonalEnemyArray[0])];
       let y = diagonalEnemyArray[1][Game.random(diagonalEnemyArray[1])];
       let size = diagonalEnemyArray[2][Game.random(diagonalEnemyArray[2])];
